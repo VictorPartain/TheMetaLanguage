@@ -1,0 +1,27 @@
+language TMLSite
+
+token STRING = /"[^"]*"/
+
+rule Site:
+  "site" title=STRING parts*=Part
+
+rule Part:
+  Section | Text | Feature | Code | Link
+
+rule Section:
+  "section" title=STRING
+
+rule Text:
+  "text" value=STRING
+
+rule Feature:
+  "feature" value=STRING
+
+rule Code:
+  "code" value=STRING
+
+rule Link:
+  "link" label=STRING url=STRING
+
+check Site:
+  site title required

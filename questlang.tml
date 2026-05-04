@@ -1,0 +1,28 @@
+language QuestLang
+
+token ID = /[A-Za-z_][A-Za-z0-9_]*/
+token NUMBER = /[0-9]+/
+token STRING = /"[^"]*"/
+
+rule Game:
+  "game" title=STRING "player" "hp" hp=NUMBER "attack" attack=NUMBER "start" start=ID rooms+=Room
+
+rule Room:
+  "room" id=ID name=STRING "{" text=Text enemies*=Enemy exits*=Exit "}"
+
+rule Text:
+  "text" value=STRING
+
+rule Enemy:
+  "enemy" name=STRING "hp" hp=NUMBER "attack" attack=NUMBER
+
+rule Exit:
+  "exit" label=STRING "->" target=ID
+
+check Game:
+  start room must exist
+
+check Room:
+  room ids must be unique
+
+  

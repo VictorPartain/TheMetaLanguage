@@ -1,0 +1,31 @@
+game "CryptWalker"
+player hp 100 attack 20
+start entrance
+
+room entrance "Crypt Entrance" {
+  text "A stone archway leads into a dark crypt."
+  exit "Enter the crypt" -> fork
+  exit "Run away" -> coward
+}
+
+room fork "Echoing Fork" {
+  text "Two paths split before you. A goblin blocks the way."
+  enemy "Goblin" hp 30 attack 8
+  exit "Go left" -> chapel
+  exit "Go right" -> throne
+}
+
+room chapel "Crimson Chapel" {
+  text "An old altar glows with red light."
+  enemy "Vampire Spawn" hp 50 attack 12
+  exit "Continue deeper" -> throne
+}
+
+room throne "Dracula's Throne" {
+  text "Count Dracula waits on a throne of bone."
+  enemy "Count Dracula" hp 100 attack 18
+}
+
+room coward "Outside the Crypt" {
+  text "You escape safely, but Dracula remains undefeated."
+}

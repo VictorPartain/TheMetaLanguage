@@ -1,0 +1,4 @@
+app MyGame
+setting fullscreen = true
+setting volume = 80
+setting difficulty = "hard"

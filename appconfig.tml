@@ -1,0 +1,21 @@
+language AppConfig
+
+token ID = /[A-Za-z_][A-Za-z0-9_]*/
+token NUMBER = /[0-9]+/
+token STRING = /"[^"]*"/
+token BOOL = /true|false/
+
+rule Config:
+  "app" name=ID settings*=Setting
+
+rule Setting:
+  "setting" key=ID "=" value=Value
+
+rule Value:
+  STRING | NUMBER | BOOL
+
+check Config:
+  unique(settings.key)
+
+check Setting:
+  if key == "volume" then value between 0 and 100
